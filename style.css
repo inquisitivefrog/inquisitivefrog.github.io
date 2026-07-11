@@ -104,11 +104,10 @@ strong {
 }
 
 .phone-row img {
-    /* Each image can be up to 180px, but shrinks on narrow viewports.
-       ~3 per row when there's room, wraps to fewer when there isn't. */
+    /* Cap at 180px on desktop; shrink (never grow) on narrow viewports. */
     width: 180px;
-    max-width: calc(33.333% - 11px);
-    flex: 1 1 140px;
+    max-width: min(180px, calc(33.333% - 11px));
+    flex: 0 1 140px;
     margin: 0;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
