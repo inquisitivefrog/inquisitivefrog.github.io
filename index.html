@@ -74,5 +74,54 @@ animations.
 
 </main>
 
+<div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <img id="lightboxImage" src="" alt="">
+</div>
+
+<script>
+(function () {
+    const images = document.querySelectorAll('.phone-row img');
+    const overlay = document.getElementById('lightboxOverlay');
+    const overlayImg = document.getElementById('lightboxImage');
+    const closeBtn = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+        overlayImg.src = src;
+        overlayImg.alt = alt || '';
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        overlay.classList.remove('active');
+        overlayImg.src = '';
+        document.body.style.overflow = '';
+    }
+
+    images.forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeLightbox();
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    let touchStartY = 0;
+    overlay.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    });
+    overlay.addEventListener('touchend', (e) => {
+        if (e.changedTouches[0].clientY - touchStartY > 80) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+})();
+</script>
+
 </body>
 </html>
