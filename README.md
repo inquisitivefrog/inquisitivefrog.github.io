@@ -18,7 +18,7 @@ Players learn through matching games, image puzzles, and comparisons while disco
 
 The GitHub Pages site is available at:
 
-https://inquisitivefrog.github.io/DinoGames/
+https://inquisitivefrog.github.io/
 
 ## Support
 
